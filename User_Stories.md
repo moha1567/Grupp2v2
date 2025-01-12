@@ -50,8 +50,8 @@
 
 **Kriterier för acceptans:**
 - Testa flera giltiga personnummer i olika format, t.ex.: 
-	-- 19900101-1234 (12-siffrigt format med bindestreck).
-	-- 9001011234 (10-siffrigt format utan bindestreck).
+	- `19900101-1234` (12-siffrigt format med bindestreck).
+	- `9001011234` (10-siffrigt format utan bindestreck).
 - Bekräfta att metoden för validering returnerar true för dessa giltiga personnummer
 
 
