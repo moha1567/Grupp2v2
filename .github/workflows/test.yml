@@ -24,7 +24,7 @@ jobs:
         run: dotnet restore
 
       - name: Build the project
-        run: dotnet build --configuration Debug
+        run: dotnet build
 
       - name: Run Unit Tests
         run: dotnet test
