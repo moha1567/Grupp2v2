@@ -35,10 +35,14 @@ Inlämning ska ske senast 17/1 klockan 23.59 på omniway. Alla gruppmedlemmar lämn
 Onsdag 15/1 ska varje grupp göra en avstämning med utbildaren.
 
 Lycka till!
+________________________________________
+________________________________________
+________________________________________
 
+<u>**Projektets dokumentation**</u>
 
-Projektets dokumentation
-Svenska regler för personnummer
+**Svenska regler för personnummer**
+
 Ett svenskt personnummer består av följande format:
 YYYYMMDD-XXXX eller YYMMDD-XXXX, med eller utan bindestreck.
 YY eller YYYY: År, kan anges med 2 eller 4 siffror.
