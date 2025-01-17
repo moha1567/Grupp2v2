@@ -10,8 +10,8 @@ COPY . ./
 # Restore dependencies
 RUN dotnet restore
 
-# Build the project
-RUN dotnet build --configuration Release --output /app/build
+# Publish the project to create the runtime-ready output
+RUN dotnet publish --configuration Release --output /app/publish
 
 # Use the .NET Runtime image as the runtime environment
 FROM mcr.microsoft.com/dotnet/aspnet:9.0
@@ -19,8 +19,8 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the build output from the build environment
-COPY --from=build-env /app/build .
+# Copy the published output from the build environment
+COPY --from=build-env /app/publish .
 
 # Specify the entry point for the application
 ENTRYPOINT ["dotnet", "docker-intro-gh.dll"]
