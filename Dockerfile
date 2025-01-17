@@ -11,10 +11,10 @@ COPY . ./
 RUN dotnet restore
 
 # Build the project
-RUN dotnet build --configuration Debug --output /app/build
+RUN dotnet build --configuration Release --output /app/build
 
-# Use the .NET SDK image as the runtime environment
-FROM mcr.microsoft.com/dotnet/sdk:9.0
+# Use the .NET Runtime image as the runtime environment
+FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 # Set the working directory in the container
 WORKDIR /app
@@ -23,4 +23,4 @@ WORKDIR /app
 COPY --from=build-env /app/build .
 
 # Specify the entry point for the application
-CMD ["dotnet", "docker-intro-gh.dll"]
+ENTRYPOINT ["dotnet", "docker-intro-gh.dll"]
