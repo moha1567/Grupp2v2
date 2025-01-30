@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace PersonalNumberValidatorApp
 {
@@ -38,9 +39,9 @@ namespace PersonalNumberValidatorApp
         static void DisplayWelcomeMessage()
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("=======================================");
+            Console.WriteLine(" =======================================");
             Console.WriteLine("  Välkommen till Personnummer Validerare");
-            Console.WriteLine("=======================================");
+            Console.WriteLine(" =======================================");
             Console.ResetColor();
             Console.WriteLine("Skriv ett personnummer i formatet ÅÅÅÅMMDDXXXX.");
             Console.WriteLine("Skriv 'x' för att avsluta programmet.\n");
@@ -73,9 +74,9 @@ namespace PersonalNumberValidatorApp
         static void ExitProgram()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("\n=====================================");
-            Console.WriteLine(" Programmet avslutas. Tack för att du använde oss!");
-            Console.WriteLine("=====================================");
+            Console.WriteLine("\n ====================================================");
+            Console.WriteLine("   Programmet avslutas. Tack för att du använde oss!");
+            Console.WriteLine(" ====================================================");
             Console.ResetColor();
         }
 
@@ -84,23 +85,71 @@ namespace PersonalNumberValidatorApp
         /// </summary>
         /// <param name="input">Användarens inmatning.</param>
         /// <param name="validator">Instans av PersonalNumberValidator.</param>
+        /// 
+        
         static void ValidateAndDisplayResult(string input, PersonalNumberValidator validator)
         {
-            Console.WriteLine();  // Utrymme för bättre läsbarhet
+            Console.WriteLine();
 
-            if (validator.ValidatePersonalNumber(input))
+            string cleanedInput = validator.CleanPersonalNumber(input);
+
+            if (!validator.IsValidFormat(cleanedInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" Ogiltigt format! Personnumret måste innehålla 10 eller 12 siffror.");
+            }
+            else if (!validator.IsValidDate(cleanedInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" Ogiltigt födelsedatum! Kontrollera att datumet är korrekt.");
+            }
+            else if (!validator.PassesLuhnAlgorithm(cleanedInput))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(" Luhn-algoritmen misslyckades! Kontrollera sista siffran.");
+            }
+            else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("✅ Personnumret är giltigt!");
             }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine("❌ Ogiltigt personnummer!");
-            }
 
             Console.ResetColor();
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //static void ValidateAndDisplayResult(string input, PersonalNumberValidator validator)
+        //{
+        //    Console.WriteLine();  // Utrymme för bättre läsbarhet
+
+        //    if (validator.ValidatePersonalNumber(input))
+        //    {
+        //        Console.ForegroundColor = ConsoleColor.Green;
+        //        Console.WriteLine("✅ Personnumret är giltigt!");
+        //    }
+        //    else
+        //    {
+        //        Console.ForegroundColor = ConsoleColor.Red;
+        //        Console.WriteLine("❌ Ogiltigt personnummer!");
+        //    }
+
+        //    Console.ResetColor();
+        //}
 
         /// <summary>
         /// Ber användaren att trycka på en tangent för att fortsätta.
