@@ -87,6 +87,7 @@ namespace PersonalNumberValidatorApp
         /// <param name="validator">Instans av PersonalNumberValidator.</param>
         /// 
         
+        // Ändringar...
         static void ValidateAndDisplayResult(string input, PersonalNumberValidator validator)
         {
             Console.WriteLine();
